@@ -1,0 +1,62 @@
+@charset 'utf-8';
+*{
+	margin: 0;
+	padding: 0;
+}
+body{
+	width: 98.8%;
+	height: 500px;
+	background-color: black;
+	padding-top: 150px;*/
+	
+}
+section{
+	width: 22.3%;
+	
+	margin: 0 auto;
+	
+	
+	
+
+}
+.tab{
+	width: 300px;
+	height: 350px;
+	background-color: gray;
+	border-collapse: collapse;
+	table-layout: fixed;
+	text-align: center;
+
+
+}
+.button input{
+	width: 80%;
+	height: 80%;
+	background-image: url(button.jpg);
+	color: white;
+	font-size: 18px;
+
+
+}
+.button input:hover{
+	/*cursor:pointer;*/
+	background-image: url(button2.jpg);
+}
+.text{
+	width: 95%;
+	height: 90%;
+	background-color: #00FF00;
+	vertical-align: bottom;
+	font-size: 20px;
+	
+}
+.div{
+	width: 90%;
+	
+	background: #C8BFE7;
+	
+	margin-top: 70px;
+	opacity: 0.2;
+	font-style: '微软雅黑';
+	color:blue;
+}

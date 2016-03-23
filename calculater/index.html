@@ -1,0 +1,195 @@
+
+<!DOCTYPE html>
+<html lang='zh-cn'>
+<head>
+	<meta charset='utf-8'>
+	<title>迷你计算器</title>
+	<link rel="stylesheet" type="text/css" href="index.css">
+	<script type="text/javascript">
+
+	function calculate()
+	{
+		 this.firstnum='';
+		 this.secondnum='';
+		 this.answer='';
+		 this.flag=false;
+		 this.flag2=false;
+		 this.number=0;
+		 this.reslut='';
+		this.setnum=function(point)
+		{
+			var id=document.getElementById(point.id);
+			var answer=document.getElementById('answer');
+			this.answer=answer;
+			
+			if(!this.flag)
+			{	if(!this.flag2)
+				{
+					this.firstnum= this.firstnum.concat(id.value);			
+					answer.value=this.firstnum;
+				}else
+				{
+					this.flag2=false;
+					this.setzero();
+					this.firstnum= this.firstnum.concat(id.value);			
+					answer.value=this.firstnum;
+				}
+					
+
+			}else
+			{
+				this.secondnum=this.secondnum.concat(id.value);
+				answer.value=this.secondnum;
+
+			}
+				
+			
+			
+		}
+		this.jisuan=function(point)
+		{
+			this.answer.value='';
+			 this.flag=true;
+			var id=document.getElementById(point.id);
+			switch(id.value)
+			{
+				case '+':
+				this.number=1;
+				if(this.flag2)
+				this.firstnum=this.reslut;
+				break;
+				case '-':
+				this.number=2;
+				if(this.flag2)
+				this.firstnum=this.reslut;
+				break;
+				case '*':
+				this.number=3;
+				if(this.flag2)
+				this.firstnum=this.reslut;
+				break;
+				case '/':
+				this.number=4;
+				if(this.flag2)
+				this.firstnum=this.reslut;
+				break;
+				case '=':
+				switch(this.number)
+				{
+					case 1:
+					var number1=parseFloat(this.firstnum);
+					var number2=parseFloat(this.secondnum);
+					this.reslut=(number1+number2).toString();
+					this.answer.value=this.reslut;
+					break;
+					case 2:
+					var number1=parseFloat(this.firstnum);
+					var number2=parseFloat(this.secondnum);
+					this.reslut=(number1-number2).toString();
+					this.answer.value=this.reslut;
+					break;
+					case 3:
+					var number1=parseFloat(this.firstnum);
+					var number2=parseFloat(this.secondnum);
+					this.reslut=(number1*number2).toString();
+					this.answer.value=this.reslut;
+					break;
+					case 4:
+					var number1=parseFloat(this.firstnum);
+					var number2=parseFloat(this.secondnum);
+					this.reslut=(number1/number2).toString();
+					this.answer.value=this.reslut;
+					break;
+					case 0:
+					 this.answer.value=this.firstnum;
+					 break;
+
+				}
+					if(this.number!=0)
+					{
+						this.number=0;
+						
+						// this.firstnum=this.reslut;
+						this.firstnum='';
+						this.secondnum='';
+					 	this.flag=false;
+					 	this.flag2=true;
+					}
+					
+				break;
+
+
+			}
+			
+
+		}
+		this.setzero=function()
+		{
+			this.firstnum='';
+			 this.secondnum='';
+			 
+			 this.flag=false;
+			 this.number=0;
+			 this.answer.value='0';
+
+		}
+		this.cancel=function()
+		{
+			if(!this.flag)
+			{	
+					var array=this.firstnum.substr(0,this.firstnum.length-1);
+					
+					this.answer.value=array;
+					this.firstnum=array;
+				
+
+			}else
+			{
+				var array=this.secondnum.substr(0,this.secondnum.length-1);
+					
+					this.answer.value=array;
+					this.secondnum=array;
+
+			}
+		}
+
+	}
+	var cal=new calculate();
+	// function show(flag)
+	// {
+	// 	switch(flag)
+	// 	{
+	// 		case 0:
+	// 		cal.setnum();
+	// 	}
+	// }
+
+	</script>
+</head>
+<body>
+	<section>
+		<table border='1' class='tab'>
+			<tr><td colspan='4'><input type='text' class='text' value='0' readonly id='answer' maxlenght='280px'></td></tr>
+			<tr class='button'><td colspan='2'><input type='button' value='清零' onclick='cal.setzero()'></td><td><input type='button' value='撤销' onclick='cal.cancel()'></td><td><input type='button' value='保留'></td></tr>
+			<tr class='button'><td><input type='button' value='+' id='+' onclick='cal.jisuan(this)'></td><td><input id='one' type='button' value='1' onclick='cal.setnum(this)'></td><td><input id='two' type='button' value='2' onclick='cal.setnum(this)'></td><td><input id='three' type='button' value='3' onclick='cal.setnum(this)'></td></tr>
+			<tr class='button'><td><input type='button' value='-' id='-' onclick='cal.jisuan(this)'></td><td><input id='four' type='button' value='4' onclick='cal.setnum(this)'></td><td><input id='five' type='button' value='5' onclick='cal.setnum(this)'></td><td><input id='six' type='button' value='6' onclick='cal.setnum(this)'></td></tr>
+			<tr class='button'><td><input type='button' value='*' id='*' onclick='cal.jisuan(this)'></td><td><input id='seven' type='button' value='7' onclick='cal.setnum(this)'></td><td><input id='eight' type='button' value='8' onclick='cal.setnum(this)'></td><td><input id='nine' type='button' value='9' onclick='cal.setnum(this)'></td></tr>
+			<tr class='button'><td><input  type='button' value='/' id='/' onclick='cal.jisuan(this)'></td><td><input type='button' value='0' onclick='cal.setnum(this)' id='zero'></td><td><input type='button' value='.'></td><td><input type='button' value='=' id='=' onclick='cal.jisuan(this)'></td></tr>
+
+
+		</table>
+
+
+	</section>
+	<div class='div'>
+		<h2>用户手册</h2>
+		<mark>名称：</mark>迷你型计算器<br>
+		<mark>功能介绍：</mark>此计算器可以计算简单的加减乘除运算。按键有：回撤按钮、清零按钮还有加减乘除、0至9、点和等于按钮。每次计算需得出结果都才能继续计算，即每次完成一个计算，需按等于按钮。当然，也可以连续计算如：4+5+4...。回车按钮就是在输入错误时，删除已输入的数据。
+
+
+	</div>
+	
+
+
+</body>
+</html>
